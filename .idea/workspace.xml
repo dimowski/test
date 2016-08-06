@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a7cbe50-9c32-4e08-ade8-0c08bd1c53ba" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/timemanager/AuthorizationServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/timemanager/AuthorizationServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/timemanager/DbUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/timemanager/DbUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/timemanager/MainServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/timemanager/MainServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/timemanager/RegistrationServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/timemanager/RegistrationServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/main.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/main.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/manage.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/manage.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/log4j2.xml" afterPath="$PROJECT_DIR$/target/classes/log4j2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/timemanager/WEB-INF/classes/log4j2.xml" afterPath="$PROJECT_DIR$/target/timemanager/WEB-INF/classes/log4j2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/timemanager/main.jsp" afterPath="$PROJECT_DIR$/target/timemanager/main.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/timemanager/manage.jsp" afterPath="$PROJECT_DIR$/target/timemanager/manage.jsp" />
     </list>
     <ignored path="TimeManager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,8 +40,8 @@
       <file leaf-file-name="MainServlet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/timemanager/MainServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
+            <state relative-caret-position="323">
+              <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -75,11 +69,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="add-subcategory-form.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="add-subcategory-form.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/add-subcategory-form.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="59" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
+            <state relative-caret-position="17">
+              <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="log4j2.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/log4j2.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -121,35 +125,6 @@
             <state relative-caret-position="238">
               <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DbUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/timemanager/DbUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#398#399#0" expanded="true" />
-                <element signature="e#440#441#0" expanded="true" />
-                <marker date="1470512094779" expanded="true" signature="672:1134" ph="CREATE TABLE... missingValue_activity" />
-                <marker date="1470512094779" expanded="true" signature="1591:1838" ph="CREATE TABLE... missingValue_subcategories" />
-                <marker date="1470512094779" expanded="true" signature="2297:2532" ph="CREATE TABLE... missingValue_categories" />
-                <marker date="1470512094779" expanded="true" signature="3054:3187" ph="INSERT INTO `time_manager_db`.`users`... " />
-                <marker date="1470512094779" expanded="true" signature="3929:3996" ph="SELECT * FRO... users" />
-                <marker date="1470512094779" expanded="true" signature="4775:4824" ph="SELECT `cate... missingValue_categories" />
-                <marker date="1470512094779" expanded="true" signature="5648:5699" ph="SELECT subca... missingValue_subcategories" />
-                <marker date="1470512094779" expanded="true" signature="6339:6419" ph="INSERT INTO `time_manager_db`.`missingValue_categories`... " />
-                <marker date="1470512094779" expanded="true" signature="6876:6962" ph="INSERT INTO `time_manager_db`.`missingValue_categories`... " />
-                <marker date="1470512094779" expanded="true" signature="7532:7539" ph="UPDATE `time... " />
-                <marker date="1470512094779" expanded="true" signature="7532:7595" ph="UPDATE `time... " />
-                <marker date="1470512094779" expanded="true" signature="8182:8254" ph="UPDATE missi... " />
-                <marker date="1470512094779" expanded="true" signature="8762:8815" ph="DELETE FROM " />
-                <marker date="1470512094779" expanded="true" signature="9274:9333" ph="DELETE FROM " />
-                <marker date="1470512094779" expanded="true" signature="9889:10033" ph="INSERT INTO missingValue_activity... " />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -223,6 +198,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/timemanager/RegistrationServlet.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/main.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/manage.jsp" />
+        <option value="$PROJECT_DIR$/src/main/resources/log4j2.xml" />
       </list>
     </option>
   </component>
@@ -1305,12 +1281,12 @@
       <workItem from="1467203657696" duration="883000" />
       <workItem from="1470214132786" duration="2442000" />
       <workItem from="1470294257648" duration="2356000" />
-      <workItem from="1470476149288" duration="6479000" />
+      <workItem from="1470476149288" duration="7509000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="269997000" />
+    <option name="totallyTimeSpent" value="271027000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1627,14 +1603,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="819">
@@ -1753,16 +1721,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/timemanager/MainServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/register.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -1821,8 +1779,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/add-subcategory-form.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="59" selection-start-line="10" selection-start-column="59" selection-end-line="10" selection-end-column="59" />
+        <state relative-caret-position="17">
+          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/timemanager/MainServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j2.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>

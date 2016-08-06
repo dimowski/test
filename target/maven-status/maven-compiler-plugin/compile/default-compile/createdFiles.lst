@@ -1,1 +1,6 @@
+com\timemanager\ActivityServlet.class
+com\timemanager\RegistrationServlet.class
+com\timemanager\DbUtil.class
+com\timemanager\Activity.class
+com\timemanager\AuthorizationServlet.class
 com\timemanager\MainServlet.class

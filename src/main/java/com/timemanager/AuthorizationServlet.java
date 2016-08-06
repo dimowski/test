@@ -1,7 +1,8 @@
 package com.timemanager;
 
 import org.apache.commons.codec.digest.DigestUtils;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -14,6 +15,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class AuthorizationServlet extends HttpServlet {
+
+    private static final Logger log = LogManager.getLogger(AuthorizationServlet.class.getName());
     private DbUtil dbUtil;
 
     @Override
@@ -31,7 +34,7 @@ public class AuthorizationServlet extends HttpServlet {
         try {
             //Проверка валидности пользователя
             if (dbUtil.isAuthorized(login, pwd)) {
-                MainServlet.log.info(login + " authorized successfully.");
+                log.info(login + " authorized successfully.");
                 // Добавление cookie с ИД пользователя
                 Cookie loginCookie = new Cookie("userID", login);
                 loginCookie.setMaxAge(60*60*24*365);
@@ -50,7 +53,7 @@ public class AuthorizationServlet extends HttpServlet {
                     rd.include(request, response);
             }
         } catch (SQLException e) {
-            MainServlet.log.error("Unable to check user authorization", e);
+            log.error("Unable to check user authorization", e);
         }
     }
 
@@ -72,12 +75,12 @@ public class AuthorizationServlet extends HttpServlet {
             List<String> categoryList = dbUtil.getCategoryList(login);
             List<String> subcategoryList = dbUtil.getSubcategoryList(login);
             request.getSession().setAttribute("LOGIN", login);
-            MainServlet.log.info("USER LOGIN IS " + login);
+            log.info("USER LOGIN IS " + login);
             request.getSession().setAttribute("CATEGORY_LIST", categoryList);
             request.getSession().setAttribute("SUBCATEGORY_LIST", subcategoryList);
             response.sendRedirect("main.jsp");
         } catch (SQLException e) {
-            MainServlet.log.error("Unable to check user cookie....", e);
+            log.error("Unable to check user cookie....", e);
         }
     }
 }

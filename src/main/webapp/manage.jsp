@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.timemanager.MainServlet" %>
+<%@ page import="org.apache.logging.log4j.LogManager" %>
+<%@ page import="org.apache.logging.log4j.Logger" %>
 <html>
 <head>
     <title>Title</title>
@@ -8,13 +9,14 @@
 </head>
 
 <!-- Проверка авторизации пользователя -->
+<%! static Logger log = LogManager.getLogger("manage.jsp"); %>
 <%
     String userName = null;
     Cookie[] cookies = request.getCookies();
     if (cookies != null) {
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("userID")) {
-                MainServlet.log.info("Cookie found");
+                log.info("Cookie found");
                 userName = cookie.getValue();
             }
         }

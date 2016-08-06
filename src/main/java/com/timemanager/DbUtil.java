@@ -1,11 +1,15 @@
 package com.timemanager;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DbUtil {
+
+    private static final Logger log = LogManager.getLogger(DbUtil.class.getName());
 
     private DataSource dataSource;
 
@@ -28,7 +32,7 @@ public class DbUtil {
                     "  PRIMARY KEY (`activity_id`));";
             myStmt = myConn.createStatement();
             myStmt.execute(sql);
-            MainServlet.log.info("Activity table created successfully");
+            log.info("Activity table created successfully");
         } finally {
             close(myConn, myStmt, null);
         }
@@ -45,7 +49,7 @@ public class DbUtil {
                     " PRIMARY KEY (`subcategory_id`));";
             myStmt = myConn.createStatement();
             myStmt.execute(sql);
-            MainServlet.log.info("Subcategories table created successfully");
+            log.info("Subcategories table created successfully");
         } finally {
             close(myConn, myStmt, null);
         }
@@ -62,7 +66,7 @@ public class DbUtil {
                     " PRIMARY KEY (`category_id`));";
             myStmt = myConn.createStatement();
             myStmt.execute(sql);
-            MainServlet.log.info("Categories table created successfully");
+            log.info("Categories table created successfully");
         } finally {
             close(myConn, myStmt, null);
         }
@@ -127,7 +131,7 @@ public class DbUtil {
                 categoriesList.add(myRs.getString("category"));
             }
         } catch (SQLException exc) {
-            MainServlet.log.error("Error while connecting to DB in getCategory()!", exc);
+            log.error("Error while connecting to DB in getCategory()!", exc);
         } finally {
             close(myConn, myStmt, myRs);
         }
@@ -188,14 +192,14 @@ public class DbUtil {
     public void updateCategory(String oldCategory, String newCategory, String login) throws SQLException {
         Connection myConn = null;
         PreparedStatement myStmt = null;
-        MainServlet.log.info("At updateCategory():" + oldCategory + "/" + newCategory + "/" + login);
+        log.info("At updateCategory():" + oldCategory + "/" + newCategory + "/" + login);
         try {
             myConn = dataSource.getConnection();
             String sql = "UPDATE " + login + "_categories SET category=? WHERE category=?";
             myStmt = myConn.prepareStatement(sql);
             myStmt.setString(1, newCategory);
             myStmt.setString(2, oldCategory);
-            MainServlet.log.info("UPDATING CATEGORY:" + myStmt);
+            log.info("UPDATING CATEGORY:" + myStmt);
             myStmt.execute();
         } finally {
             close(myConn, myStmt, null);
@@ -248,7 +252,7 @@ public class DbUtil {
     public void addActivity(Activity tempActivity, String login) throws SQLException {
         Connection myConn = null;
         PreparedStatement myStmt = null;
-        MainServlet.log.info("START TIME IS: " +  new java.sql.Date(tempActivity.getStartTime().getTime()));
+        log.info("START TIME IS: " +  new java.sql.Date(tempActivity.getStartTime().getTime()));
         try {
             myConn = dataSource.getConnection();
             String sql = "INSERT INTO " + login + "_activity (category, subcategory, start_time, finish_time," +
@@ -281,7 +285,7 @@ public class DbUtil {
                 myConn.close();
             }
         } catch (Exception exc) {
-            MainServlet.log.error("Error during closing connection" ,exc);
+            log.error("Error during closing connection" ,exc);
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.timemanager;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +14,9 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 
 public class RegistrationServlet extends HttpServlet {
+
     private DbUtil dbUtil;
+    private static Logger log = LogManager.getLogger(RegistrationServlet.class.getName());
 
     @Override
     public void init() throws ServletException {
@@ -29,16 +33,16 @@ public class RegistrationServlet extends HttpServlet {
         try {
             if(dbUtil.createNewUser(userName, login, md5Password)) {
                 response.sendRedirect("login.html");
-                MainServlet.log.info("User added successfully");
+                log.info("User added successfully");
             } else {
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/register.html");
                 PrintWriter out = response.getWriter();
                 out.println("<div align=\"center\"><font color=red>User with this Login already exists. Try another Login.</font></div>\n");
                 rd.include(request, response);
-                MainServlet.log.info("Registration failed");
+                log.info("Registration failed");
             }
         } catch (SQLException e) {
-            MainServlet.log.error("Error while creating new user", e);
+            log.error("Error while creating new user", e);
         }
     }
 }

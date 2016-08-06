@@ -6,25 +6,27 @@
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
-    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
-      <schema id="1" name="time_manager_db"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+      <schema id="1" name="time_manager_db">
+        <visible>1</visible>
+      </schema>
       <table id="2" parent="1" name="users"/>
       <column id="3" parent="2" name="id">
         <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+        <data-type>int(11)|0</data-type>
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="4" parent="2" name="username">
         <mandatory>1</mandatory>
-        <data-type>varchar(45)</data-type>
+        <data-type>varchar(45)|0</data-type>
       </column>
       <column id="5" parent="2" name="login">
         <mandatory>1</mandatory>
-        <data-type>varchar(45)</data-type>
+        <data-type>varchar(45)|0</data-type>
       </column>
       <column id="6" parent="2" name="pass">
         <mandatory>1</mandatory>
-        <data-type>varchar(45)</data-type>
+        <data-type>varchar(45)|0</data-type>
       </column>
       <key id="7" parent="2" name="PRIMARY">
         <columns>id</columns>

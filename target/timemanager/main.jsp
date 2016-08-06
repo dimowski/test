@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.timemanager.MainServlet" %>
 <%@ page import="java.util.Locale" %>
-<%@ page import="com.timemanager.DbUtil" %>
+<%@ page import="org.apache.logging.log4j.Logger" %>
+<%@ page import="org.apache.logging.log4j.LogManager" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
@@ -12,13 +13,14 @@
 </head>
 
 <!-- Проверка авторизации пользователя -->
+<%! static Logger log = LogManager.getLogger("manage.jsp"); %>
 <%
     String userName = null;
     Cookie[] cookies = request.getCookies();
     if (cookies != null) {
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("userID")) {
-                MainServlet.log.info("Cookie found");
+                log.info("Cookie found");
                 userName = cookie.getValue();
             }
         }

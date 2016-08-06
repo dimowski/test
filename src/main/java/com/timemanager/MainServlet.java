@@ -19,29 +19,27 @@ public class MainServlet extends HttpServlet {
     @Resource(name = "jdbc/time_manager_db")
     private DataSource dataSource;
 
-    public static final Logger log = LogManager.getLogger(MainServlet.class.getName());
+    private static final Logger log = LogManager.getLogger(MainServlet.class.getName());
     private DbUtil dbUtil;
 
     @Override
     public void init() throws ServletException {
         super.init();
-
         try {
             log.info("initializing Main Servlet");
             dbUtil = new DbUtil(dataSource);
             this.getServletConfig().getServletContext().setAttribute("dbUtil", dbUtil);
-            log.info("Main Servlet successful initialized");
+            log.debug("Main Servlet successful initialized");
         } catch (Exception ex) {
             log.error("Error while init MainServlet!", ex);
         }
     }
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String theCommand = request.getParameter("command");
-            MainServlet.log.info("At doGet(). Command is " + theCommand);
+            log.info("At doGet(). Command is " + theCommand);
             switch (theCommand) {
                 case "ADD_CATEGORY":
                     addCategory(request);
@@ -87,7 +85,6 @@ public class MainServlet extends HttpServlet {
         startTimeCal.set(Calendar.MINUTE, Integer.parseInt(hourMin[1]));
         startTimeCal.set(Calendar.SECOND, 0);
 
-
         log.info("START TIME IS: " + startTimeCal.getTime());
 
         Calendar finishTimeCal = Calendar.getInstance();
@@ -110,7 +107,7 @@ public class MainServlet extends HttpServlet {
 
     private void listCategoies(HttpServletRequest request) throws SQLException, ServletException, IOException {
         String login = (String) request.getSession().getAttribute("LOGIN");
-        MainServlet.log.info("at listCategories(). login = " + login);
+        log.info("at listCategories(). login = " + login);
         List<String> categoryList = dbUtil.getCategoryList(login);
         request.getSession().setAttribute("CATEGORY_LIST", categoryList);
     }
@@ -138,7 +135,7 @@ public class MainServlet extends HttpServlet {
     private void updateCategory(HttpServletRequest request) throws ServletException, SQLException, IOException {
         String newCategory = request.getParameter("newCategory");
         String oldCategory = request.getParameter("categoryName");
-        MainServlet.log.info("At updateCategory(). categories = " + oldCategory + "/" + newCategory);
+        log.info("At updateCategory(). categories = " + oldCategory + "/" + newCategory);
         String login = (String) request.getSession().getAttribute("LOGIN");
         dbUtil.updateCategory(oldCategory, newCategory, login);
         listCategoies(request);

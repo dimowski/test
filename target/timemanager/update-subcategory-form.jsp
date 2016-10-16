@@ -2,14 +2,14 @@
 <html>
 <head>
     <title>Update subcategory</title>
-    <link rel="stylesheet" type="text/css" href="css/main-page.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
 </head>
 <body>
 <nav>
     <ul>
         <li><a href="main.jsp">Track</a></li>
         <li class="selected"><a href="manage.jsp">Manage</a></li>
-        <li><a href="">Activity</a></li>
+        <li><a href="">com.timemanager.model.Activity</a></li>
     </ul>
 </nav>
 

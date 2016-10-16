@@ -17,7 +17,7 @@
 
   <servlet>
     <servlet-name>MainServlet</servlet-name>
-    <servlet-class>com.timemanager.MainServlet</servlet-class>
+    <servlet-class>com.timemanager.servlet.MainServlet</servlet-class>
     <load-on-startup>0</load-on-startup>
   </servlet>
   <servlet-mapping>
@@ -27,7 +27,7 @@
 
   <servlet>
     <servlet-name>AuthorizationServlet</servlet-name>
-    <servlet-class>com.timemanager.AuthorizationServlet</servlet-class>
+    <servlet-class>com.timemanager.servlet.AuthorizationServlet</servlet-class>
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
@@ -37,11 +37,15 @@
 
   <servlet>
     <servlet-name>RegistrationServlet</servlet-name>
-    <servlet-class>com.timemanager.RegistrationServlet</servlet-class>
+    <servlet-class>com.timemanager.servlet.RegistrationServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RegistrationServlet</servlet-name>
     <url-pattern>/RegistrationServlet</url-pattern>
   </servlet-mapping>
 
+  <login-config>
+    <auth-method>BASIC</auth-method>
+  </login-config>
+  
 </web-app>

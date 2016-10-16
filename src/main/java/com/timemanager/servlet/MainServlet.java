@@ -1,5 +1,7 @@
-package com.timemanager;
+package com.timemanager.servlet;
 
+import com.timemanager.dao.DbUtil;
+import com.timemanager.model.Activity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,7 +33,7 @@ public class MainServlet extends HttpServlet {
             this.getServletConfig().getServletContext().setAttribute("dbUtil", dbUtil);
             log.debug("Main Servlet successful initialized");
         } catch (Exception ex) {
-            log.error("Error while init MainServlet!", ex);
+            log.error("Error while init com.timemanager.servlet.MainServlet!", ex);
         }
     }
 
@@ -84,8 +86,6 @@ public class MainServlet extends HttpServlet {
         startTimeCal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(hourMin[0]));
         startTimeCal.set(Calendar.MINUTE, Integer.parseInt(hourMin[1]));
         startTimeCal.set(Calendar.SECOND, 0);
-
-        log.info("START TIME IS: " + startTimeCal.getTime());
 
         Calendar finishTimeCal = Calendar.getInstance();
         Activity tempActivity;

@@ -7,7 +7,8 @@
 <html>
 <head>
     <title>Track time</title>
-    <link rel="stylesheet" type="text/css" href="css/main-page.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <script type="text/javascript" src="javascript/timestamp.js"></script>
 </head>
 
@@ -29,77 +30,79 @@
 %>
 
 <body>
-<header></header>
-<nav>
-    <ul>
-        <li class="selected"><a href="main.jsp">Track</a></li>
-        <li><a href="manage.jsp">Manage</a></li>
-        <li><a href="ActivityServlet">Activity</a></li>
-    </ul>
-</nav>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="navbar-brand">Timemanager</div>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="main.jsp">Track</a></li>
+                <li><a href="manage.jsp">Manage</a></li>
+                <li><a href="ActivityServlet">Activity</a></li>
+                <li><a href="login.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<h1 align="center"><%= new java.text.SimpleDateFormat("EEEE, dd MMMM y", Locale.ENGLISH).format(new java.util.Date()) %>
-</h1>
-<hr/>
-<form id="timeForm" method="post" action="MainServlet">
-    <div align="center">
-        <table>
-            <tbody>
-                <tr>
-                    <td><label>Category</label></td>
-                    <td>
-                        <select name="category">
-                        <option></option>
-                        <c:forEach var="tempCategory" items="${CATEGORY_LIST}">
-                            <option>${tempCategory}</option> -->
-                        </c:forEach>
-                        </select>
-                    </td>
-                    <td><label>Subcategory</label></td>
-                    <td><select name="subcategory">
-                        <option></option>
-                        <c:forEach var="tempSubcategory" items="${SUBCATEGORY_LIST}">
-                            <option>${tempSubcategory}</option>
-                        </c:forEach>
-                    </select></td>
-                </tr>
-                <tr>
-                    <td><label>Start time</label></td>
-                    <td>
-                        <input id="startTimeText" type="text" maxlength="5" size="5" name="startTime" value="" required/>
-                        <button class="button" type="button" onclick="displayStartTime()">Now</button>
-                    </td>
-                    <td><label>Finish time</label></td>
-                    <td>
-                        <input id="finishTimeText" type="text" maxlength="5" size="5" name="finishTime"/>
-                        <button class="button" type="button" onclick="displayFinishTime()">Now</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="page-header">
+        <h3><%= new java.text.SimpleDateFormat("EEEE, dd MMMM y", Locale.ENGLISH).format(new java.util.Date()) %>
+        </h3>
     </div>
-
-    <!--
-    <div align="center">
-        <label>Start time</label>
-        <input id="startTimeText" type="text" maxlength="5" size="5" name="startTime" value="" required/>
-        <button class="button" type="button" onclick="displayStartTime()">Now</button>
-
-        <label>Finish time</label>
-        <input id="finishTimeText" type="text" maxlength="5" size="5" name="finishTime"/>
-        <button class="button" type="button" onclick="displayFinishTime()">Now</button>
-    </div>
-
-    <div>
-        Duration <input type="text" disabled="disabled" value="21:05"/>
-    </div>
--->
-    <div align="center">
-        Description <textarea rows="2" cols="50" name="desc"></textarea>
-    </div>
-
-    <div align="center"><input type="submit" value="Submit" class="button"/></div>
-    <hr/>
-</form>
+    <form id="timeForm" method="post" action="MainServlet">
+        <div class="col-sm-6 col-sm-offset-3">
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select class="form-control" id="category" name="category">
+                    <option></option>
+                    <c:forEach var="tempCategory" items="${CATEGORY_LIST}">
+                        <option>${tempCategory}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="subcategory">Subcategory</label>
+                <select class="form-control" id="subcategory" name="subcategory">
+                    <option></option>
+                    <c:forEach var="tempSubcategory" items="${SUBCATEGORY_LIST}">
+                        <option>${tempSubcategory}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="startTimeText">Start time</label>
+                <div class="row">
+                    <div class="col-md-10">
+                        <input class="form-control" id="startTimeText" type="text" maxlength="5" size="5"
+                               name="startTime"
+                               required/>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-default" type="button" onclick="displayStartTime()">Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="finishTimeText">Finish time</label>
+                <div class="row">
+                    <div class="col-md-10">
+                        <input class="form-control" id="finishTimeText" type="text" maxlength="5" size="5"
+                               name="finishTime"/>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-default" type="button" onclick="displayFinishTime()">Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="desc">Description</label>
+                <textarea id="desc" class="form-control" rows="2" cols="50" name="desc"></textarea>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
 </html>

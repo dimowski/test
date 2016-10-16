@@ -1,4 +1,6 @@
-package com.timemanager;
+package com.timemanager.servlet;
+
+import com.timemanager.dao.DbUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +14,7 @@ public class ActivityServlet extends HttpServlet{
     @Override
     public void init() throws ServletException {
         super.init();
-        // Получение объекта DbUtil из MainServlet.java для доступа к базе данных
+        // Получение объекта com.timemanager.dao.DbUtil из com.timemanager.servlet.MainServlet.java для доступа к базе данных
         dbUtil = (DbUtil) this.getServletConfig().getServletContext().getAttribute("dbUtil");
     }
 

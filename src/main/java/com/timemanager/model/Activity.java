@@ -1,4 +1,4 @@
-package com.timemanager;
+package com.timemanager.model;
 
 import java.util.Date;
 

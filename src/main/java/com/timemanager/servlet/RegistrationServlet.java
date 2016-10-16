@@ -1,5 +1,6 @@
-package com.timemanager;
+package com.timemanager.servlet;
 
+import com.timemanager.dao.DbUtil;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,7 +22,7 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
-        // Получение объекта DbUtil из MainServlet.java для доступа к базе данных
+        // Получение объекта com.timemanager.dao.DbUtil из com.timemanager.servlet.MainServlet.java для доступа к базе данных
         dbUtil = (DbUtil) this.getServletConfig().getServletContext().getAttribute("dbUtil");
     }
 

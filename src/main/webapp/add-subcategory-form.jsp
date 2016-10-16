@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Add subcategory</title>
-    <link rel="stylesheet" type="text/css" href="css/main-page.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
 </head>
 <body>
 <header></header>
@@ -10,7 +10,7 @@
     <ul>
         <li class="selected"><a href="main.jsp">Track</a></li>
         <li><a href="manage.jsp">Manage</a></li>
-        <li><a href="">Activity</a></li>
+        <li><a href="">com.timemanager.model.Activity</a></li>
     </ul>
 </nav>
 <h3>Add subcategory</h3>

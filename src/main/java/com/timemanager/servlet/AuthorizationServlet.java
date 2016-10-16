@@ -1,5 +1,6 @@
-package com.timemanager;
+package com.timemanager.servlet;
 
+import com.timemanager.dao.DbUtil;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

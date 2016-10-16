@@ -1,5 +1,6 @@
-package com.timemanager;
+package com.timemanager.dao;
 
+import com.timemanager.model.Activity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import javax.sql.DataSource;
@@ -32,7 +33,7 @@ public class DbUtil {
                     "  PRIMARY KEY (`activity_id`));";
             myStmt = myConn.createStatement();
             myStmt.execute(sql);
-            log.info("Activity table created successfully");
+            log.info("com.timemanager.model.Activity table created successfully");
         } finally {
             close(myConn, myStmt, null);
         }

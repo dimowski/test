@@ -11,17 +11,17 @@
 <!-- Проверка авторизации пользователя -->
 <%! static Logger log = LogManager.getLogger("manage.jsp"); %>
 <%
-    String userName = null;
+    String userId = null;
     Cookie[] cookies = request.getCookies();
     if (cookies != null) {
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("userID")) {
                 log.info("Cookie found");
-                userName = cookie.getValue();
+                userId = cookie.getValue();
             }
         }
     }
-    if (userName == null)
+    if (userId == null)
         response.sendRedirect("login.html");
 %>
 

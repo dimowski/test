@@ -2,37 +2,42 @@
 <html>
 <head>
     <title>Add category</title>
-    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
+
 <body>
-    <header></header>
-    <nav>
-        <ul>
-            <li class="selected"><a href="main.jsp">Track</a></li>
-            <li><a href="manage.jsp">Manage</a></li>
-            <li><a href="">com.timemanager.model.Activity</a></li>
-        </ul>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="navbar-brand">Timemanager</div>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="main.jsp">Track</a></li>
+                <li><a href="manage.jsp">Manage</a></li>
+                <li><a href="ActivityServlet">Activity</a></li>
+                <li><a href="login.html">Logout</a></li>
+            </ul>
+        </div>
     </nav>
+
+    <div class="page-header">
         <h3>Add category</h3>
-        <br/>
-        <form action="MainServlet" method="get">
-            <input type="hidden" name="command" value="ADD_CATEGORY"/>
-            <table>
-                <tbody>
-                    <tr>
-                        <td><label>Category</label></td>
-                        <td><input type="text" name="category"></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" value="Save"/></td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
-    <hr/>
-        <p>
-            <a href="manage.jsp">Back</a>
-        </p>
+    </div>
+
+    <form action="MainServlet">
+        <input type="hidden" name="command" value="ADD_CATEGORY"/>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="category">Category</label>
+                <input class="form-control" id="category" type="text" name="category" size="50">
+            </div>
+            <div>
+                <input class="btn btn-primary" type="submit" value="Save"/>
+                <a class="btn btn-default" href="manage.jsp">Back</a>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
 </html>

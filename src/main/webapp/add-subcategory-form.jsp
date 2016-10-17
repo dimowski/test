@@ -2,37 +2,41 @@
 <html>
 <head>
     <title>Add subcategory</title>
-    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-<header></header>
-<nav>
-    <ul>
-        <li class="selected"><a href="main.jsp">Track</a></li>
-        <li><a href="manage.jsp">Manage</a></li>
-        <li><a href="">com.timemanager.model.Activity</a></li>
-    </ul>
-</nav>
-<h3>Add subcategory</h3>
-<br/>
-<form action="MainServlet" method="get">
-    <input type="hidden" name="command" value="ADD_SUBCATEGORY"/>
-    <table>
-        <tbody>
-        <tr>
-            <td><label>Subcategory</label></td>
-            <td><input type="text" name="subcategory"></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Save"/></td>
-        </tr>
-        </tbody>
-    </table>
-</form>
-<hr/>
-<p>
-    <a href="manage.jsp">Back</a>
-</p>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="navbar-brand">Timemanager</div>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="main.jsp">Track</a></li>
+                <li><a href="manage.jsp">Manage</a></li>
+                <li><a href="ActivityServlet">Activity</a></li>
+                <li><a href="login.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h3>Add subcategory</h3>
+    </div>
+
+    <form action="MainServlet" method="get">
+        <input type="hidden" name="command" value="ADD_SUBCATEGORY"/>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="subcategory">Subcategory</label>
+                <input class="form-control" id="subcategory" type="text" name="subcategory">
+            </div>
+            <div>
+                <input class="btn btn-primary" type="submit" value="Save">
+                <a class="btn btn-primary" href="manage.jsp">Back</a>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
 </html>

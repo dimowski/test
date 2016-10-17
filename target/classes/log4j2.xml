@@ -3,13 +3,13 @@
     <Appenders>
         <File name="FileAppender" fileName="myLogs/TimeManager.log" append="false">
             <PatternLayout>
-                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+                <Pattern>%d [%p] %c{1}.%M %m%n</Pattern>
             </PatternLayout>
         </File>
     </Appenders>
 
     <Loggers>
-        <Root level="info">
+        <Root level="debug">
             <AppenderRef ref="FileAppender"/>
         </Root>
     </Loggers>

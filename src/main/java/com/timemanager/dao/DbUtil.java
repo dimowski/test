@@ -1,16 +1,13 @@
 package com.timemanager.dao;
 
-import com.timemanager.model.Activity;
-import com.timemanager.model.Category;
-import com.timemanager.model.Subcategory;
-import com.timemanager.model.User;
+import com.timemanager.model.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Date;
+import java.util.*;
 
 public class DbUtil {
 
@@ -88,19 +85,19 @@ public class DbUtil {
         return false;
     }
 
-    public List<String> getCategoryList(User user) {
+    public List<Category> getCategoryList(User user) {
         Connection myConn = null;
         PreparedStatement myStmt = null;
         ResultSet myRs = null;
-        List<String> categoriesList = new ArrayList<>();
+        List<Category> categoriesList = new ArrayList<>();
         try {
             myConn = dataSource.getConnection();
-            String sql = "SELECT name FROM category WHERE user_id=?";
+            String sql = "SELECT * FROM category WHERE user_id=?";
             myStmt = myConn.prepareStatement(sql);
             myStmt.setInt(1, user.getId());
             myRs = myStmt.executeQuery();
             while (myRs.next()) {
-                categoriesList.add(myRs.getString("name"));
+                categoriesList.add(new Category(myRs.getInt("category_id"), myRs.getString("name"), user));
             }
         } catch (SQLException exc) {
             log.error("Error while connecting to DB!", exc);
@@ -113,19 +110,19 @@ public class DbUtil {
         return categoriesList;
     }
 
-    public List<String> getSubcategoryList(User user) {
+    public List<Subcategory> getSubcategoryList(User user) {
         Connection myConn = null;
         PreparedStatement myStmt = null;
         ResultSet myRs = null;
-        List<String> subcategoriesList = new ArrayList<>();
+        List<Subcategory> subcategoriesList = new ArrayList<>();
         try {
             myConn = dataSource.getConnection();
-            String sql = "SELECT name FROM subcategory WHERE user_id=?";
+            String sql = "SELECT * FROM subcategory WHERE user_id=?";
             myStmt = myConn.prepareStatement(sql);
             myStmt.setInt(1, user.getId());
             myRs = myStmt.executeQuery();
             while (myRs.next()) {
-                subcategoriesList.add(myRs.getString("name"));
+                subcategoriesList.add(new Subcategory(myRs.getInt("subcategory_id"), myRs.getString("name"), user));
             }
         } catch (SQLException e) {
             log.error(e);
@@ -145,7 +142,7 @@ public class DbUtil {
             myConn = dataSource.getConnection();
             String sql = "INSERT INTO category (name, user_id) VALUES (?, ?)";
             myStmt = myConn.prepareStatement(sql);
-            myStmt.setString(1, category.getCategoryName());
+            myStmt.setString(1, category.getName());
             myStmt.setInt(2, category.getUser().getId());
             myStmt.executeUpdate();
         } catch (SQLException e) {
@@ -161,7 +158,7 @@ public class DbUtil {
             myConn = dataSource.getConnection();
             String sql = "INSERT INTO subcategory (name, user_id) VALUES (?, ?);";
             myStmt = myConn.prepareStatement(sql);
-            myStmt.setString(1, subcategory.getSubcategoryName());
+            myStmt.setString(1, subcategory.getName());
             myStmt.setInt(2, subcategory.getUser().getId());
             myStmt.executeUpdate();
         } catch (SQLException e) {
@@ -242,17 +239,49 @@ public class DbUtil {
         }
     }
 
-    public void addActivity(Activity tempActivity, String login) throws SQLException {
+    public List<ActivityVM> getActivitiesByDate(java.util.Date today, int userId) {
+        Connection myConn = null;
+        PreparedStatement myStmt = null;
+        ResultSet resultSet = null;
+        List<ActivityVM> activityList = new ArrayList<>();
+        try {
+            myConn = dataSource.getConnection();
+            String sql = "SELECT c.name cat, s.name subcat, a.start_time, a.finish_time, a.description FROM activity a " +
+                    "LEFT JOIN category c ON a.category_id = c.category_id " +
+                    "LEFT JOIN subcategory s ON a.subcategory_id = s.subcategory_id " +
+                    "WHERE start_time LIKE (?) AND a.user_id=?";
+            myStmt = myConn.prepareStatement(sql);
+            myStmt.setString(1, new Date(today.getTime()) + "%");
+            myStmt.setInt(2, userId);
+            log.debug("SQL = {}", myStmt.toString());
+            resultSet = myStmt.executeQuery();
+            while (resultSet.next()) {
+                String category = resultSet.getString("cat");
+                String subcategory = resultSet.getString("subcat");
+                Timestamp startTime = resultSet.getTimestamp("start_time");
+                Timestamp finishTime = resultSet.getTimestamp("finish_time");
+                String description = resultSet.getString("description");
+                activityList.add(new ActivityVM(category, subcategory, startTime, finishTime, description));
+            }
+        } catch (SQLException e) {
+            log.error(e);
+        } finally {
+            close(myConn, myStmt, resultSet);
+        }
+        return activityList;
+    }
+
+    public void addActivity(Activity tempActivity) {
         Connection myConn = null;
         PreparedStatement myStmt = null;
         log.info("START TIME IS: " + new java.sql.Date(tempActivity.getStartTime().getTime()));
         try {
             myConn = dataSource.getConnection();
-            String sql = "INSERT INTO " + login + "_activity (category, subcategory, start_time, finish_time," +
-                    " description) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO activity (category_id, subcategory_id, start_time, finish_time, description, user_id)" +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
             myStmt = myConn.prepareStatement(sql);
-            myStmt.setString(1, tempActivity.getCategory());
-            myStmt.setString(2, tempActivity.getSubcategory());
+            myStmt.setInt(1, tempActivity.getCategory());
+            myStmt.setInt(2, tempActivity.getSubcategory());
             myStmt.setTimestamp(3, new java.sql.Timestamp(tempActivity.getStartTime().getTime()));
             if (tempActivity.getFinishTime() != null) {
                 myStmt.setTimestamp(4, new java.sql.Timestamp(tempActivity.getFinishTime().getTime()));
@@ -260,7 +289,10 @@ public class DbUtil {
                 myStmt.setDate(4, null);
             }
             myStmt.setString(5, tempActivity.getDescription());
+            myStmt.setInt(6, tempActivity.getUser().getId());
             myStmt.execute();
+        } catch (SQLException e) {
+            log.error(e);
         } finally {
             close(myConn, myStmt, null);
         }

@@ -1,21 +1,23 @@
 package com.timemanager.model;
 
-import java.util.Date;
+        import java.util.Date;
 
 public class Activity {
     private int id;
-    private String category;
-    private String subcategory;
+    private int category;
+    private int subcategory;
     private Date startTime;
     private Date finishTime;
     private String description;
+    private User user;
 
-    public Activity(String category, String subcategory, Date startTime, Date finishTime, String description) {
+    public Activity(int category, int subcategory, Date startTime, Date finishTime, User user, String description) {
         this.category = category;
         this.subcategory = subcategory;
         this.startTime = startTime;
         this.finishTime = finishTime;
         this.description = description;
+        this.user = user;
     }
 
     public int getId() {
@@ -26,19 +28,19 @@ public class Activity {
         this.id = id;
     }
 
-    public String getCategory() {
+    public int getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(int category) {
         this.category = category;
     }
 
-    public String getSubcategory() {
+    public int getSubcategory() {
         return subcategory;
     }
 
-    public void setSubcategory(String subcategory) {
+    public void setSubcategory(int subcategory) {
         this.subcategory = subcategory;
     }
 
@@ -64,5 +66,13 @@ public class Activity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

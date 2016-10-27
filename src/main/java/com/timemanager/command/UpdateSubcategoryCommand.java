@@ -1,6 +1,7 @@
 package com.timemanager.command;
 
 import com.timemanager.dao.DbUtil;
+import com.timemanager.model.Subcategory;
 import com.timemanager.model.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,7 @@ public class UpdateSubcategoryCommand implements Command {
         String oldSubcategory = request.getParameter("subcategoryName");
         User user = (User) request.getSession().getAttribute("USER");
         dbUtil.updateSubcategory(oldSubcategory, newSubcategory, user.getId());
-        List<String> subcategoryList = dbUtil.getSubcategoryList(user);
+        List<Subcategory> subcategoryList = dbUtil.getSubcategoryList(user);
         request.getSession().setAttribute("SUBCATEGORY_LIST", subcategoryList);
         return "/manage.jsp";
     }

@@ -1,6 +1,7 @@
 package com.timemanager.command;
 
 import com.timemanager.dao.DbUtil;
+import com.timemanager.model.Subcategory;
 import com.timemanager.model.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,7 @@ public class DeleteSubcategoryCommand implements Command {
         String subcategory = request.getParameter("subcategoryName");
         User user = (User) request.getSession().getAttribute("USER");
         dbUtil.deleteSubcategory(subcategory, user.getId());
-        List<String> subcategoryList = dbUtil.getSubcategoryList(user);
+        List<Subcategory> subcategoryList = dbUtil.getSubcategoryList(user);
         request.getSession().setAttribute("SUBCATEGORY_LIST", subcategoryList);
         return "/manage.jsp";
     }

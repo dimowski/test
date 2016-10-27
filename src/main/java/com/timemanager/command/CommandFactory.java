@@ -13,12 +13,15 @@ public class CommandFactory {
     public static Command getCommand(ServletRequest request) {
         DbUtil dbUtil = (DbUtil) request.getServletContext().getAttribute("dbUtil");
         String theCommand = request.getParameter("command");
-        log.debug("Command = {}", theCommand);
-        if (theCommand == null) {
-            theCommand = "list";
+        if(theCommand == null) {
+            return null;
         }
-        log.info("Command = {}", theCommand);
+        log.debug("Command = {}", theCommand);
         switch (theCommand) {
+            case "TRACK":
+                return new ShowTimeCommand(dbUtil);
+            case "ADD_ACTIVITY":
+                return new AddActivityCommand(dbUtil);
             case "ADD_CATEGORY":
                 return new AddCategoryCommand(dbUtil);
             case "ADD_SUBCATEGORY":
@@ -31,6 +34,8 @@ public class CommandFactory {
                 return new DeleteCategoryCommand(dbUtil);
             case "DELETE_SUBCATEGORY":
                 return new DeleteSubcategoryCommand(dbUtil);
+            case "activity":
+                return new ShowActivityCommand(dbUtil);
             default:
                 return null;
         }

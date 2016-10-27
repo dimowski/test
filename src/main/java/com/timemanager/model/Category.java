@@ -3,11 +3,17 @@ package com.timemanager.model;
 public class Category {
 
     private int id;
-    private String categoryName;
+    private String name;
     private User user;
 
-    public Category(String categoryName, User user) {
-        this.categoryName = categoryName;
+    public Category(int id, String name, User user) {
+        this.id = id;
+        this.name = name;
+        this.user = user;
+    }
+
+    public Category(String name, User user) {
+        this.name = name;
         this.user = user;
     }
 
@@ -19,12 +25,12 @@ public class Category {
         this.id = id;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getName() {
+        return name;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public User getUser() {

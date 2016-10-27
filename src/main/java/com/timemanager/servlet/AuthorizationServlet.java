@@ -1,6 +1,8 @@
 package com.timemanager.servlet;
 
 import com.timemanager.dao.DbUtil;
+import com.timemanager.model.Category;
+import com.timemanager.model.Subcategory;
 import com.timemanager.model.User;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.logging.log4j.LogManager;
@@ -42,12 +44,12 @@ public class AuthorizationServlet extends HttpServlet {
             loginCookie.setMaxAge(60 * 60 * 24 * 30);
             response.addCookie(loginCookie);
             // Добавление объектов пользователя из БД в объект sission
-            List<String> categoryList = dbUtil.getCategoryList(user);
-            List<String> subcategoryList = dbUtil.getSubcategoryList(user);
+            List<Category> categoryList = dbUtil.getCategoryList(user);
+            List<Subcategory> subcategoryList = dbUtil.getSubcategoryList(user);
             request.getSession().setAttribute("CATEGORY_LIST", categoryList);
             request.getSession().setAttribute("SUBCATEGORY_LIST", subcategoryList);
             request.getSession().setAttribute("USER", user);
-            request.getRequestDispatcher("/main.jsp").forward(request, response);
+            response.sendRedirect("MainServlet?command=TIME");
         } else {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
             PrintWriter out = response.getWriter();
@@ -70,13 +72,13 @@ public class AuthorizationServlet extends HttpServlet {
         if (userId != null) {
             log.info("UserID is {}", userId);
             User user = dbUtil.getUserById(Integer.parseInt(userId));
-            List<String> categoryList = dbUtil.getCategoryList(user);
-            List<String> subcategoryList = dbUtil.getSubcategoryList(user);
             request.getSession().setAttribute("USER", user);
             log.info("User is {}", user.getEmail());
+            List<Category> categoryList = dbUtil.getCategoryList(user);
+            List<Subcategory> subcategoryList = dbUtil.getSubcategoryList(user);
             request.getSession().setAttribute("CATEGORY_LIST", categoryList);
             request.getSession().setAttribute("SUBCATEGORY_LIST", subcategoryList);
-            getServletContext().getRequestDispatcher("/main.jsp").forward(request, response);
+            response.sendRedirect("MainServlet?command=TIME");
         } else {
             response.sendRedirect("login.html");
         }

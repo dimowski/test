@@ -1,6 +1,7 @@
 package com.timemanager.command;
 
 import com.timemanager.dao.DbUtil;
+import com.timemanager.model.Category;
 import com.timemanager.model.User;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,7 @@ public class UpdateCategoryCommand implements Command {
         String oldCategory = request.getParameter("categoryName");
         User user = (User) request.getSession().getAttribute("USER");
         dbUtil.updateCategory(oldCategory, newCategory, user.getId());
-        List<String> categoryList = dbUtil.getCategoryList(user);
+        List<Category> categoryList = dbUtil.getCategoryList(user);
         request.getSession().setAttribute("CATEGORY_LIST", categoryList);
         return "/manage.jsp";
     }

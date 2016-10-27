@@ -9,12 +9,12 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <div class="navbar-brand">Timemanager</div>
+                <div class="navbar-brand"><img src="images/logo.png" style="max-width: 100px; height: auto;"></div>
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="main.jsp">Track</a></li>
                 <li><a href="manage.jsp">Manage</a></li>
-                <li><a href="ActivityServlet">Activity</a></li>
+                <li><a href="MainServlet?command=activity">Activity</a></li>
                 <li><a href="login.html">Logout</a></li>
             </ul>
         </div>

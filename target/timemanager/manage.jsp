@@ -30,12 +30,12 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <div class="navbar-brand">Timemanager</div>
+                <div class="navbar-brand"><img src="images/logo.png" style="max-width: 100px; height: auto;"></div>
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="main.jsp">Track</a></li>
                 <li class="active"><a href="manage.jsp">Manage</a></li>
-                <li><a href="ActivityServlet">Activity</a></li>
+                <li><a href="MainServlet?command=activity">Activity</a></li>
                 <li><a href="login.html">Logout</a></li>
             </ul>
         </div>
@@ -44,7 +44,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="page-header">
-                <h3>Categories</h3>
+                <h3 class="text-center">Categories</h3>
             </div>
 
             <c:if test="${CATEGORY_LIST==null}">
@@ -73,15 +73,15 @@
 
                             <c:url var="tempLink" value="update-category-form.jsp">
                                 <c:param name="command" value="UPDATE_CATEGORY"/>
-                                <c:param name="categoryName" value="${tempCategory}"/>
+                                <c:param name="name" value="${tempCategory.name}"/>
                             </c:url>
                             <c:url var="deleteLink" value="MainServlet">
                                 <c:param name="command" value="DELETE_CATEGORY"/>
-                                <c:param name="categoryName" value="${tempCategory}"/>
+                                <c:param name="name" value="${tempCategory.name}"/>
                             </c:url>
 
                             <tr>
-                                <td>${tempCategory}</td>
+                                <td>${tempCategory.name}</td>
                                 <td class="text-center"><a href="${tempLink}">Update</a>
                                     |<a href="${deleteLink}"
                                         onclick="if (!(confirm('Are you sure?'))) return false;">Delete</a>
@@ -95,7 +95,7 @@
 
         <div class="col-md-6">
             <div class="page-header">
-                <h3>Subcategories</h3>
+                <h3 class="text-center">Subcategories</h3>
             </div>
             <c:if test="${SUBCATEGORY_LIST==null}">
                 <div class="alert alert-info">No subcategories</div>
@@ -123,14 +123,14 @@
 
                             <c:url var="tempLink" value="update-subcategory-form.jsp">
                                 <c:param name="command" value="UPDATE_SUBCATEGORY"/>
-                                <c:param name="subcategoryName" value="${tempSubcategory}"/>
+                                <c:param name="name" value="${tempSubcategory.name}"/>
                             </c:url>
                             <c:url var="deleteLink" value="MainServlet">
                                 <c:param name="command" value="DELETE_SUBCATEGORY"/>
-                                <c:param name="subcategoryName" value="${tempSubcategory}"/>
+                                <c:param name="name" value="${tempSubcategory.name}"/>
                             </c:url>
                             <tr>
-                                <td>${tempSubcategory}</td>
+                                <td>${tempSubcategory.name}</td>
                                 <td class="text-center"><a href="${tempLink}">Update</a>
                                     |<a href="${deleteLink}"
                                         onclick="if (!(confirm('Are you sure?'))) return false;">Delete</a></td>

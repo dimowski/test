@@ -73,7 +73,6 @@ public class AuthorizationServlet extends HttpServlet {
             log.info("UserID is {}", userId);
             User user = dbUtil.getUserById(Integer.parseInt(userId));
             request.getSession().setAttribute("USER", user);
-            log.info("User is {}", user.getEmail());
             List<Category> categoryList = dbUtil.getCategoryList(user);
             List<Subcategory> subcategoryList = dbUtil.getSubcategoryList(user);
             request.getSession().setAttribute("CATEGORY_LIST", categoryList);

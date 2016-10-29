@@ -18,7 +18,7 @@ public class DeleteSubcategoryCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String subcategory = request.getParameter("subcategoryName");
+        String subcategory = request.getParameter("name");
         User user = (User) request.getSession().getAttribute("USER");
         dbUtil.deleteSubcategory(subcategory, user.getId());
         List<Subcategory> subcategoryList = dbUtil.getSubcategoryList(user);

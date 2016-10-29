@@ -18,7 +18,7 @@ public class DeleteCategoryCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        String category = request.getParameter("categoryName");
+        String category = request.getParameter("name");
         User user = (User) request.getSession().getAttribute("USER");
         dbUtil.deleteCategory(category, user.getId());
         List<Category> categoryList = dbUtil.getCategoryList(user);

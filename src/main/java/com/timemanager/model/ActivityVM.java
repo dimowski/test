@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class ActivityVM {
     private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+    private SimpleDateFormat sdf2 = new SimpleDateFormat("MM/dd");
     private String category;
     private String subcategory;
     private Date startTime;
@@ -14,6 +15,7 @@ public class ActivityVM {
     private String start;
     private String finish;
     private String duration;
+    private String date;
 
     public ActivityVM(String category, String subcategory, Date startTime, Date finishTime, String description) {
         this.category = category;
@@ -77,6 +79,10 @@ public class ActivityVM {
 
     public void setFinish(String finish) {
         this.finish = finish;
+    }
+
+    public String getDate() {
+        return sdf2.format(startTime);
     }
 
     public String getDuration() {

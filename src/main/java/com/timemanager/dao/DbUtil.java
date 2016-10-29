@@ -298,6 +298,37 @@ public class DbUtil {
         }
     }
 
+    public List<ActivityVM> getAllActivities(User user) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<ActivityVM> activityList = new ArrayList<>();
+        try {
+            conn = dataSource.getConnection();
+            String sql = "SELECT c.name cat, s.name subcat, a.start_time, a.finish_time, a.description FROM activity a " +
+                    "LEFT JOIN category c ON a.category_id = c.category_id " +
+                    "LEFT JOIN subcategory s ON a.subcategory_id = s.subcategory_id " +
+                    "WHERE a.user_id=?";
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, user.getId());
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                String category = rs.getString("cat");
+                String subcategory = rs.getString("subcat");
+                Timestamp startTime = rs.getTimestamp("start_time");
+                Timestamp finishTime = rs.getTimestamp("finish_time");
+                String description = rs.getString("description");
+                ActivityVM activity = new ActivityVM(category, subcategory, startTime, finishTime, description);
+                activityList.add(activity);
+            }
+        } catch (SQLException e) {
+            log.error(e);
+        } finally {
+            close(conn, stmt, rs);
+        }
+        return activityList;
+    }
+
     private void close(Connection myConn, Statement myStmt, ResultSet myRs) {
         try {
             if (myRs != null) {

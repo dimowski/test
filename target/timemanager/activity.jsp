@@ -7,6 +7,8 @@
 <head>
     <title>Activity</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="javascript/jquery.min.js"></script>
+    <script src="javascript/highcharts.js"></script>
 </head>
 
 <!-- Проверка авторизации пользователя -->
@@ -63,18 +65,108 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="tempContact" items="${CONTACT_LIST.values()}">
+            <c:forEach var="tempActivity" items="${ACTIVITY}">
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>${tempActivity.date}</td>
+                    <td>${tempActivity.category}</td>
+                    <td>${tempActivity.subcategory}</td>
+                    <td>${tempActivity.start} - ${tempActivity.finish}</td>
+                    <td>${tempActivity.duration}</td>
+                    <td>${tempActivity.description}</td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+            <script language="JavaScript">
+                $(document).ready(function () {
+                    var chart = {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false
+                    };
+                    var title = {
+                        text: 'Categories'
+                    };
+                    var tooltip = {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    };
+                    var plotOptions = {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    };
+                    var series = [{
+                        type: 'pie',
+                        name: 'Time spend',
+                        data: [
+                            ['Work', 45.0],
+                            ['Rest', 55.0],
+                        ]
+                    }];
+
+                    var json = {};
+                    json.chart = chart;
+                    json.title = title;
+                    json.tooltip = tooltip;
+                    json.series = series;
+                    json.plotOptions = plotOptions;
+                    $('#container').highcharts(json);
+                });
+            </script>
+        </div>
+        <div class="col-md-6">
+            <div id="container2" style="width: 550px; height: 400px; margin: 0 auto"></div>
+            <script language="JavaScript">
+                $(document).ready(function () {
+                    var chart = {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false
+                    };
+                    var title = {
+                        text: 'Categories'
+                    };
+                    var tooltip = {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    };
+                    var plotOptions = {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    };
+                    var series = [{
+                        type: 'pie',
+                        name: 'Time spend',
+                        data: [
+                            ['Work', 45.0],
+                            ['Rest', 55.0],
+                        ]
+                    }];
+
+                    var json = {};
+                    json.chart = chart;
+                    json.title = title;
+                    json.tooltip = tooltip;
+                    json.series = series;
+                    json.plotOptions = plotOptions;
+                    $('#container2').highcharts(json);
+                });
+            </script>
+        </div>
     </div>
 </div>
 </body>

@@ -89,6 +89,6 @@ public class ActivityVM {
         long diff = finishTime.getTime() - startTime.getTime();
         long diffHours = diff / (60 * 60 * 1000) % 24;
         long diffMinutes = diff / (60 * 1000) % 60;
-        return "Total: " + diffHours + " hour(s) " + diffMinutes + " minute(s)";
+        return diffHours + " hour(s) " + diffMinutes + " minute(s)";
     }
 }

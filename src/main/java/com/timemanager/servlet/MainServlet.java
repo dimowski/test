@@ -15,22 +15,10 @@ import java.io.IOException;
 public class MainServlet extends HttpServlet {
 
     private static final Logger log = LogManager.getLogger(MainServlet.class.getName());
-    private DbUtil dbUtil;
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        try {
-            log.info("initializing Main Servlet");
-            dbUtil = (DbUtil) getServletContext().getAttribute("dbUtil");
-            log.debug("Main Servlet successful initialized");
-        } catch (Exception ex) {
-            log.error("Error while init MainServlet!", ex);
-        }
-    }
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         Command command = CommandFactory.getCommand(request);
         try {
             if (command == null) {
@@ -39,11 +27,7 @@ public class MainServlet extends HttpServlet {
             }
             String view = command.execute(request, response);
             log.debug("Target view: {}", view);
-//            if (!view.contains("main")) {
-                request.getRequestDispatcher(view).forward(request, response);
-//            } else {
-//                response.sendRedirect(view);
-//            }
+            request.getRequestDispatcher(view).forward(request, response);
         } catch (Exception e) {
             log.fatal("Executing command failed!", e);
             throw new ServletException("Executing command failed!", e);

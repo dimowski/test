@@ -54,10 +54,10 @@ public class DbUtil {
             return new User(userId, myRs.getString("email"), myRs.getString("username"), myRs.getString("pwd"));
         } catch (SQLException e) {
             log.error(e);
-            return null;
         } finally {
             close(myConn, myStmt, myRs);
         }
+        return null;
     }
 
     public boolean isAuthorized(User user) {
@@ -104,9 +104,6 @@ public class DbUtil {
         } finally {
             close(myConn, myStmt, myRs);
         }
-//        if (categoriesList.size() == 0)
-//            return null;
-//        else
         return categoriesList;
     }
 
@@ -129,9 +126,6 @@ public class DbUtil {
         } finally {
             close(myConn, myStmt, myRs);
         }
-//        if (subcategoriesList.size() == 0)
-//            return null;
-//        else
         return subcategoriesList;
     }
 
@@ -274,7 +268,6 @@ public class DbUtil {
     public void addActivity(Activity tempActivity) {
         Connection myConn = null;
         PreparedStatement myStmt = null;
-        log.info("START TIME IS: " + new java.sql.Date(tempActivity.getStartTime().getTime()));
         try {
             myConn = dataSource.getConnection();
             String sql = "INSERT INTO activity (category_id, subcategory_id, start_time, finish_time, description, user_id)" +

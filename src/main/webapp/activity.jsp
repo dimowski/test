@@ -108,8 +108,9 @@
                         type: 'pie',
                         name: 'Time spend',
                         data: [
-                            ['Work', 45.0],
-                            ['Rest', 55.0],
+                            ['Work', 397],
+                            ['Rest', 149],
+                            ['Family', 177],
                         ]
                     }];
 
@@ -133,7 +134,7 @@
                         plotShadow: false
                     };
                     var title = {
-                        text: 'Categories'
+                        text: 'Subcategories'
                     };
                     var tooltip = {
                         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -152,8 +153,11 @@
                         type: 'pie',
                         name: 'Time spend',
                         data: [
-                            ['Work', 45.0],
-                            ['Rest', 55.0],
+                            ['Diploma', 377],
+                            ['Fix my bugs', 20],
+                            ['Reading books', 32],
+                            ['Gym', 117],
+                            ['Walk', 177],
                         ]
                     }];
 
